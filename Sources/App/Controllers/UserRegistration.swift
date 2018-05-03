@@ -16,6 +16,12 @@ final class UserRegistration {
         self.drop = drop
     }
 
+    func viewData(_ req: Request)throws -> ResponseRepresentable {
+        
+        return "Probando los servcios con Vapor"
+    }
+    
+    
     func newUser(_ req: Request) throws -> ResponseRepresentable {
         
             guard let DNI = req.json?["DNI"]?.string,

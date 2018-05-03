@@ -12,6 +12,7 @@ extension Droplet {
     
     let AllUser = allUsers(self)
     get("allUsers", handler: AllUser.listAllUsers)
+    get("test", handler: userRegistrer.viewData)
     
   }
 }
