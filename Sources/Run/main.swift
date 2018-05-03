@@ -1,25 +1,37 @@
 import App
+import MySQLProvider
+import Vapor
 
-/// We have isolated all of our App's logic into
-/// the App module because it makes our app
-/// more testable.
-///
-/// In general, the executable portion of our App
-/// shouldn't include much more code than is presented
-/// here.
-///
-/// We simply initialize our Droplet, optionally
-/// passing in values if necessary
-/// Then, we pass it to our App's setup function
-/// this should setup all the routes and special
-/// features of our app
-///
-/// .run() runs the Droplet's commands, 
-/// if no command is given, it will default to "serve"
+class DataUser: NodeRepresentable {
+    
+    var DNI = Int()
+    var firsName = String()
+    var lastName = String()
+    var phone = Int()
+    var email = String()
+    var password = String()
+    
+    
+    func makeNode(in context: Context?) throws -> Node {
+        return try Node(node: ["DNI":self.DNI,
+                               "firsName": self.firsName,
+                               "lastName":self.lastName,
+                               "phone":self.lastName,
+                               "phone":self.phone,
+                               "email":self.phone,
+                               "password":self.password])
+    }
+    
+}
+
+
+
 let config = try Config()
-try config.setup()
+try config.addProvider(MySQLProvider.Provider.self)
 
 let drop = try Droplet(config)
-try drop.setup()
 
+try drop.setup()
 try drop.run()
+
+
